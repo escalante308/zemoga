@@ -29,6 +29,13 @@ class DashboardController extends Controller
 
     public function store(Request $request) 
     {
+        $validatedData = $request->validate([
+            'description'       => 'required|max:255',
+            'image_url'         => 'required|max:255',
+            'twitter_user_name' => 'required|max:255',
+            'title'             => 'required|max:255'
+        ]);
+
         $user = auth()->user();
         $user->portfolio->fill($request->toArray())->save();
 
@@ -37,13 +44,19 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request, int $id)
     {
+        $validatedData = $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name'  => 'required|max:255',
+            'email'      => 'required|max:255'
+        ]);
+
         $user = User::find($id);
 
         if ($user) {
             $user->fill($request->toArray());
             $user->save();
 
-            return view('dashboard', ['user' => User::first()])->with(['success' => true, 'message' => 'The user has been updated.']);
+            return redirect()->back()->with(['user' => User::first(), 'success' => true, 'message' => 'The user has been updated.']);
         }
     }
 }
