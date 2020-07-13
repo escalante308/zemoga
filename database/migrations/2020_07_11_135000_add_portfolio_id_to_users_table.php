@@ -14,7 +14,7 @@ class AddPortfolioIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('idportfolio');
+            $table->unsignedInteger('idportfolio')->nullable();
 
             $table->foreign('idportfolio')->references('idportfolio')->on('portfolios');
         });

@@ -51,12 +51,15 @@ class IndexTest extends TestCase
     {
         $this->withoutMiddleware();
 
+        $portfolio = factory(Portfolio::class)->create();
+
         $user = factory(User::class)->create([
-            'password' => bcrypt('password'),
+            'password'    => bcrypt('password'),
+            'idportfolio' => $portfolio->idportfolio
         ]);
         
         $response = $this->from('/login')->post('/login', [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => 'passw0rd',
         ]);
         
