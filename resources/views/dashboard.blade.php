@@ -54,7 +54,14 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-lg-10 col-lg-offset-2">
+					{!! Form::label('idportfolio', 'Displayed Portfolio'); !!}
+					<div class="col-lg-6 col-lg-offset-2">
+						{!! Form::select('idportfolio', App\Portfolio::pluck('title', 'idportfolio'), $user->idportfolio, ['class' => 'form-control', 'placeholder' => 'Select a portfolio..', 'required' => 'required']) !!}
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-6 col-lg-offset-2">
 						{!! Form::submit('Submit', ['class' => 'btn btn-lg btn-info pull-right'] ) !!}
 					</div>
 				</div>
@@ -88,7 +95,7 @@
 				<div class="form-group">
 					{!! Form::label('text', 'Twitter Username'); !!}
 					<div class="col-lg-6">
-						{!! Form::text('twitter_user_name', $value = $user->portfolio->twitter_user_name, ['class' => 'form-control', 'placeholder' => 'The username used on Twitter', 'required' => 'required']) !!}
+						{!! Form::text('twitter_user_name', $value = $user->portfolio->twitter_user_name, ['class' => 'form-control', 'placeholder' => 'The username used on Twitter']) !!}
 					</div>
 				</div>
 

@@ -20,15 +20,4 @@ class DashboardTest extends TestCase
         $response->assertSee('Dashboard Panel');
     }
 
-    public function testUpdateUser()
-    {
-        $user = factory(User::class)->make(); 
-
-        $fields = ['first_name' => 'Tester',
-                   'last_name'  => 'Application',
-                   'email'      => 'test@app.com'];
-
-        $response = $this->actingAs($user)->post('users/'.$user->id, $fields);
-        $response->assertSee('updated');
-    }
 }

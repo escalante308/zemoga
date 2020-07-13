@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
     public function portfolio(){
-        return $this->hasOne('App\Portfolio', 'idportfolio');
+        return $this->hasOne('App\Portfolio', 'idportfolio', 'idportfolio');
     }
 
     public static function deleteAll()
@@ -47,5 +47,14 @@ class User extends Authenticatable
         foreach( self::get() as $item ) {
             $item->delete();
         }
+    }
+
+    public static function validationRules() 
+    {
+        return [
+            'first_name' => 'required|max:255',
+            'last_name'  => 'required|max:255',
+            'email'      => 'required|max:255'
+        ];
     }
 }

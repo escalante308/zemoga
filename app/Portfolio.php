@@ -17,19 +17,6 @@ class Portfolio extends Model
         }
     }
 
-    public function fill(array $attributes)
-    {
-        foreach ($attributes as $key => $value) {
-            if (strlen($value) > 255) {
-                $attributes[$key] = substr($value, 0, 255);
-            }
-        }
-    
-        parent::fill($attributes);
-
-        return $this;
-    }
-
     public function getTwitterUserAttribute()
     {
         if (isset($this->twitter_user_name)) {
@@ -53,5 +40,15 @@ class Portfolio extends Model
         else {
             return "https://via.placeholder.com/350";
         }
+    }
+
+    public static function validationRules() 
+    {
+        return [
+            'description'       => 'required|max:255',
+            'image_url'         => 'required|max:255',
+            'twitter_user_name' => 'required|max:255',
+            'title'             => 'required|max:255'
+        ];
     }
 }

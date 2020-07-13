@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Controller@index')->name('index');
+Route::get('/', 'IndexController@index')->name('index');
 
 Auth::routes(['register' => false]);
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard-index');
-Route::post('/dashboard', 'DashboardController@store')->name('dashboard-store');
-
-Route::post('/users/{id}', 'DashboardController@updateUser')->name('dashboard-update-user');
+Route::get('/dashboard',    'DashboardController@index')->name('dashboard-index');
+Route::post('/dashboard',   'DashboardController@store')->name('dashboard-store');
+Route::post('/users/{id}',  'DashboardController@updateUser')->name('dashboard-update-user');

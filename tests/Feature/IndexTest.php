@@ -47,20 +47,21 @@ class IndexTest extends TestCase
         $response->assertRedirect('/dashboard');
     }
 
-    public function testLoginSucceeds()
+    public function testLoginFailsWithWrongPassword()
     {
-        $portfolio = factory(Portfolio::class)->create();
+        $this->withoutMiddleware();
+
         $user = factory(User::class)->create([
-            'password' => bcrypt($password = 'password'),
-            'idportfolio' => $portfolio->idportfolio
+            'password' => bcrypt('password'),
         ]);
         
-        $response = $this->post('/login', [
+        $response = $this->from('/login')->post('/login', [
             'email' => $user->email,
-            'password' => $password,
+            'password' => 'passw0rd',
         ]);
         
-        $this->assertAuthenticatedAs($user);
+        $response->assertRedirect('/login');
+        $response->assertSessionHasErrors('email');
     }
 
 }

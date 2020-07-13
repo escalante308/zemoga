@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Portfolio;
 
 class DashboardController extends Controller
 {
@@ -29,12 +30,7 @@ class DashboardController extends Controller
 
     public function store(Request $request) 
     {
-        $validatedData = $request->validate([
-            'description'       => 'required|max:255',
-            'image_url'         => 'required|max:255',
-            'twitter_user_name' => 'required|max:255',
-            'title'             => 'required|max:255'
-        ]);
+        $validatedData = $request->validate(Portfolio::validationRules());
 
         $user = auth()->user();
         $user->portfolio->fill($request->toArray())->save();
@@ -44,11 +40,7 @@ class DashboardController extends Controller
 
     public function updateUser(Request $request, int $id)
     {
-        $validatedData = $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name'  => 'required|max:255',
-            'email'      => 'required|max:255'
-        ]);
+        $validatedData = $request->validate(User::validationRules());
 
         $user = User::find($id);
 
