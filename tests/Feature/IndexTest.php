@@ -17,7 +17,7 @@ class IndexTest extends TestCase
      *
      * @return void
      */
-    public function testIndex()
+    public function testUserCanSeeIndexPage()
     {
         $response = $this->get('/');
         $response->assertStatus(200);
@@ -25,7 +25,7 @@ class IndexTest extends TestCase
         $response->assertViewIs('index');
     }
 
-    public function test404()
+    public function testUserCanSee404Page()
     {
         $response = $this->get('/'.Str::random(10));
         $response->assertStatus(404);
