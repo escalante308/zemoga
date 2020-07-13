@@ -112,19 +112,19 @@ Additionally, you can run the Unit tests to check if the different features are 
   
 Total Time: 14 hours
 
-## Database Table Schema
+## Database Table Schema (Portfolios Table)
 
-create table if not exists portfolios
-(
-	idportfolio int unsigned auto_increment primary key,
-	description varchar(255) null,
-	image_url varchar(255) null,
-	twitter_user_name varchar(255) null,
-	title varchar(255) null,
-	imageURL varchar(255) null,
-	twitterUserName varchar(255) null,
-	imag_url varchar(255) null,
-	created_at timestamp null,
-	updated_at timestamp null
-)
-collate=utf8mb4_unicode_ci;
+    create table if not exists portfolios
+    (
+	    idportfolio int unsigned auto_increment primary key,
+	    description varchar(255) null,
+	    image_url varchar(255) null,
+	    twitter_user_name varchar(255) null,
+	    title varchar(255) null,
+    	imageURL varchar(255) null,
+	    twitterUserName varchar(255) null,
+	    imag_url varchar(255) null,
+	    created_at timestamp null,
+	    updated_at timestamp null 
+    )
+    collate=utf8mb4_unicode_ci;
